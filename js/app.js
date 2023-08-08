@@ -37,6 +37,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
         imprimirHTML(list);
     }
 
+    //Nota: antes, esta funcion NO TENIA NINGUN PARAMETRO, pero debido a la funcionalidad de filtrar los que estan COMPLETE y luego
+    //volver a ALL, necesitabamos una copia del array original, ahi usamos el MAP, para crear la constante nuevoArr2
+    //en dado caso que no funcione algo de la app, regresar y BORRAR TODO PARAMETRO QUE TENGA EL imprimirHTML();
     function imprimirHTML(listaParameter){
         limpiarHTML();
         console.log('se esta ejecutando');
@@ -117,16 +120,31 @@ document.addEventListener('DOMContentLoaded', ()=>{
                 list = list.filter(element => {
                     return element;
                 })
+
                 imprimirHTML(list);
+            })
+
+            let active = divShortcuts.querySelector('.active');
+            active.addEventListener('click', () => {
+                let activos = list.map(element => {
+                    return element;
+                })
+                activos = activos.filter(element =>{
+                    return element.complete === false;
+                })
+
+                imprimirHTML(activos);
             })
             let complete = divShortcuts.querySelector('.complete');
             complete.addEventListener('click', () => {
                 let nuevoArr2 = list.map(element => {
                     return element;
                 })
+
                 nuevoArr2 = nuevoArr2.filter(element =>{
                     return element.complete === true;
                 })
+
                 console.log(nuevoArr2);
                 console.log(list);
                 
@@ -174,6 +192,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
         const resultado2 = document.querySelectorAll('.resultado__jsLight');
         const parrafo = document.querySelectorAll('.resultado__contenedor__texto');
         const parrafo2 = document.querySelectorAll('.resultado__contenedor__textoLight');
+        const bottomBar = document.querySelectorAll('.divShortcut');
+        const bottomBar2 = document.querySelectorAll('.divShortcutLight');
         if(!white){ //si no existe esta clase ejecutame este codigo
             const lighted = document.createElement('img');
             lighted.src = "images/icon-moon.svg";
@@ -184,6 +204,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             topInput.classList.add('top__inputLight');
             resultado.forEach(element => element.classList.add('resultado__jsLight'));
             parrafo.forEach(element => element.classList.add('resultado__contenedor__textoLight'));
+            bottomBar.forEach(element => element.classList.add('divShortcutLight'));
             mode = true;
             sincronizarStorageLight();
         }else{
@@ -193,7 +214,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             lightMode.src = "images/icon-sun.svg";
             top.classList.remove('topLight');
             topInput.classList.remove('top__inputLight');
-            //Creamos resultado2 y parrafo2 porque al cambiar el modo a Light, tendriamos solo resultado__jsLight y resultado__contenedor__textoLight, 
+            //Creamos resultado2 y parrafo2 y bottomBar2 porque al cambiar el modo a Light, tendriamos solo resultado__jsLight y resultado__contenedor__textoLight, 
             //nos borraria
             //el resultado__js y resultado__contenedor__texto , entonces para poder manipularlo creamos esas 2 constantes
             //si no, no se aplicaria ningun cambio, entonces agregamos resultado__js y resultado__contenedor__texto para volver cuando el modo
@@ -202,6 +223,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
             resultado2.forEach(element => element.classList.remove('resultado__jsLight'));
             parrafo2.forEach(element => element.classList.add('resultado__contenedor__texto'));
             parrafo2.forEach(element => element.classList.remove('resultado__contenedor__textoLight'));
+            bottomBar2.forEach(element => element.classList.add('divShortcut'));
+            bottomBar2.forEach(element => element.classList.remove('divShortcutLight'));
             mode = false;
             sincronizarStorageLight();
         }
