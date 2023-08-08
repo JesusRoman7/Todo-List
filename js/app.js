@@ -225,6 +225,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
             parrafo2.forEach(element => element.classList.remove('resultado__contenedor__textoLight'));
             bottomBar2.forEach(element => element.classList.add('divShortcut'));
             bottomBar2.forEach(element => element.classList.remove('divShortcutLight'));
+            //NOTA IMPORTANTE: AL PARECER EN EL FOREACH, AL RECORRER, NO NOS DARIA EL ERROR DE cannot read properties of null, 
+            //porque  en vez de usar el forEach en el bottomBar, hubieramos usado el querySelector normal y despues aqui abajo
+            //el bottomBar.classList.add('tal clase'); nos hubiera marcado ese error cannot read properties of null, entonces
+            //para evitar ese error, usamos el forEach
             mode = false;
             sincronizarStorageLight();
         }
