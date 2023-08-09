@@ -73,8 +73,9 @@ a{
 }
 
 .top__title__h1{
-	margin: 5rem 0;
+	margin: 2rem 0;
 	font-size: 4rem;
+	line-height: 1;
 	letter-spacing: 2rem;
 	text-transform: uppercase;
 	color: var(--VeryLightGray);
@@ -120,6 +121,7 @@ form{
 .bottom{
 	background-color: var(--VeryDarkBlue);
 	height: 100vh;
+	position: relative;
 }
 
 .bottomLight{
@@ -127,7 +129,10 @@ form{
 }
 
 .resultado{
+	position: absolute;
 	display: flex;
+	top: -5%;
+	width: 100%;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;

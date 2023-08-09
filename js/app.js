@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
     form.addEventListener('submit', lista);
     let list = []
     let mode = false;
+    let cantidad; //la cantidad nos servira para tener el numero de items que tengan el true y asi restarselo despues a la list
+    //y nos imprima el resultado de cuantos items left nos quedan
     
     //NOTA: PRIMERO VA EL MODE, SI NO SE CUATRAPEA, SI PONEMOS PRIMERO EL IMPRIMIRHTML POR EL LIST.LENGTH ENTONCES NUESTRO VALOR SIEMPRE
     //O AL PRECER SIEMPRE SERA FALSE, ES POR ESO QUE PRIMERO SETEAMOS EL MODE
@@ -83,11 +85,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
                     element.complete = true;
                     console.log(list);
                     sincronizarStorage();
+                    imprimirHTML(list); //este nos sirve para el check
                     return;
                 }
                 //De otra manera si era true se cambia a falso
                 element.complete = false;
                 console.log(list);
+                imprimirHTML(list); //este nos sirve para el check
                 sincronizarStorage();
 
             })
@@ -100,10 +104,22 @@ document.addEventListener('DOMContentLoaded', ()=>{
             divShortcuts.classList.add(mode ? "divShortcutLight" : "divShortcut");
             console.log(mode);
             console.log('clase');
-    
+            // let activo = document.querySelector('.resultado__js');
+            // console.log(activo.children[0].children[0].classList.contains('activeCheck'));
+            //El codigo de abajo nos sirve para poder usarlo en la funcion de la linea 120 que es para imprimir el texto
+            //de los items restantes, que es la funcion cantidades();
+            cantidad = list.map(element => {
+                return  element;
+            })
+            cantidad = cantidad.filter(element => {
+                return element.complete === true;
+            })
+            console.log(cantidad);
+            console.log(cantidad.length);
+
             divShortcuts.innerHTML = 
             `
-            <div><p class="divShortcut__text">${list.length} Items Left</p></div>
+            <div><p class="divShortcut__text">${cantidades()} Items Left</p></div>
     
             <div class="divShortcut__bottom">
                 <p class="divShortcut__text all">All</p> 
@@ -132,7 +148,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
                 activos = activos.filter(element =>{
                     return element.complete === false;
                 })
-                
+
                 if(activos.length){
                     imprimirHTML(activos);
                 }
@@ -251,6 +267,11 @@ document.addEventListener('DOMContentLoaded', ()=>{
         while(resultado.firstChild){
             resultado.removeChild(resultado.firstChild);
         }
+    }
+
+    //Esta funcion es para restar la lista actual menos la cantidad de true que haya
+    function cantidades(){
+        return list.length - cantidad.length;
     }
 
 });
