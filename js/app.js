@@ -132,8 +132,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
                 activos = activos.filter(element =>{
                     return element.complete === false;
                 })
-
-                imprimirHTML(activos);
+                
+                if(activos.length){
+                    imprimirHTML(activos);
+                }
             })
             let complete = divShortcuts.querySelector('.complete');
             complete.addEventListener('click', () => {
@@ -148,7 +150,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
                 console.log(nuevoArr2);
                 console.log(list);
                 
-                imprimirHTML(nuevoArr2); //imprimiendo el nuevo array con el filter para no mutar los datos originales
+                if(nuevoArr2.length){
+                    imprimirHTML(nuevoArr2);
+                }
+                //imprimiendo el nuevo array con el filter para no mutar los datos originales
                 //por esta perra funcionalidad tuvimos QUE DARLE UN PARAMETRO A LA FUNCION imprimirHTML();
                 //ANTES NO TENIA NADA, PERO PARA PODER DARLE CLICK A COMPLETE Y LUEGO A ALL FUE NECESARIO TENER 2 ARREGLOS
                 //EL RREGLO ORIGINAL Y OTRO EL ARREGLO MAP PARA PODER COPIAR PROPIEDADES Y NO AFECTAR EL ARRAY ORIGINAL, 
