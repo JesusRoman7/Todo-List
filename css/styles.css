@@ -142,16 +142,24 @@ form{
 	display: flex;
 	justify-content: space-between;
 	background-color: var(--VeryDarkGrayishBlue2);
-	border-radius: .5rem;
 	width: 30%;
+	border-bottom: 1px var(--VeryDarkGrayishBlue1) solid;
+}
+
+.resultado__js:nth-child(1){
+	border-radius: .5rem .5rem 0 0;
 }
 
 .resultado__jsLight{
 	background-color:var(--VeryLightGray);
 	display: flex;
 	justify-content: space-between;
-	border-radius: .5rem;
 	width: 30%;
+	border-bottom: 1px var(--VeryLightGrayishBlue) solid;
+}
+
+.resultado__jsLight:nth-child(1){
+	border-radius: .5rem .5rem 0 0;
 }
 
 .resultado__js__firstChild{
@@ -203,13 +211,13 @@ form{
 }
 
 .resultado__contenedor__texto{
-	font-size: 1.8rem;
+	font-size: 1.7rem;
 	color: var(--VeryLightGray);
 }
 
 .resultado__contenedor__textoLight{
 	color: var(--VeryDarkBlue);
-	font-size: 1.8rem;
+	font-size: 1.7rem;
 }
 
 .marked{
@@ -221,7 +229,7 @@ form{
 	display: flex;
 	justify-content: space-around;
 	background-color: var(--VeryDarkGrayishBlue2);
-	border-radius: .5rem;
+	border-radius: 0 0 .5rem .5rem;
 	width: 30%;
 }
 
@@ -229,7 +237,7 @@ form{
 	display: flex;
 	justify-content: space-around;
 	background-color: var(--VeryLightGray);
-	border-radius: .5rem;
+	border-radius: 0 0 .5rem .5rem;
 	width: 30%;
 }
 
